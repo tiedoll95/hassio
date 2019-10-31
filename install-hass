@@ -1,0 +1,20 @@
+#!/bin/bash
+echo" ''''disable selinux''''"
+Setenforce 0
+sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux && cat /etc/sysconfig/selinux
+sleep 2
+
+systemctl stop firewalld
+systemctl disable firewalld
+
+yum install git -y
+yum install net-tools -y 
+yum install epel-release -y 
+yum -y install jq avahi
+
+git clone https://github.com/tiedoll95/docker
+
+chmod 777 /$PWD/docker
+sh /$PWD/docker/install-docker
+
+curl -sL "https://raw.githubusercontent.com/home-assistant/hassio-installer/master/hassio_install.sh" | bash -s
