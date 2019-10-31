@@ -18,3 +18,11 @@ chmod 777 /$PWD/docker
 sh /$PWD/docker/install-docker
 
 curl -sL "https://raw.githubusercontent.com/home-assistant/hassio-installer/master/hassio_install.sh" | bash -s
+
+ip addr show ens33 | grep "inet\b" | awk '{print $2}' | cut -d'/' -f1 >> /tmp/interface
+
+echo "#################################################################"
+echo "#################################################################"
+echo -e '\E[32m'"Login with: http://"$interface":8123"
+echo "#################################################################"
+echo "#################################################################"
