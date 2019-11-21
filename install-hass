@@ -1,6 +1,6 @@
 #!/bin/bash
-echo" ''''disable selinux''''"
-Setenforce 0
+echo" ##########disable selinux ############# "
+setenforce 0
  sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config && cat /etc/selinux/config
 sleep 2
 
